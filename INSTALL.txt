@@ -1,0 +1,48 @@
+Note: You can run MTS and CAT from the same domain or from separate glassfish domains.
+
+1. Install glassfish and configure and start a domain.
+2. If you want a network vs. embedded derby database run "asadmin start-database" from the glassfish/glassfish/bin directory.
+3. Log into the URL of the glassfish domain admin console for MTS.
+4. On the left, expand Resources.
+5. Expand JDBC.
+6. Click on JDBC Connection Pools on the left hand side panel.
+7. Click the New button in the header of the pool list.
+8. Set the Pool Name to "mts".
+9. Select "javax.sql.XADataSource" from the Resource Type pulldown.
+10. Select Derby from the for a network-based database or Embedded-Derby.
+11. Click Next in the upper right.
+12. Check Ping enabled.
+13. Under Additional Properties:
+   for Embedded:
+    a. User = APP
+    b. DatabaseName = MTS
+    c. CreateDatabase = true
+    d. ConnectionAttributes = ;create=true;upgrade=true
+    e. Password = APP
+  for Network:
+    a. User = APP
+    b. DatabaseName = MTS
+    c. CreateDatabase = true
+    d. ConnectionAttributes = ;create=true;upgrade=true
+    e. Password = APP
+    f. ServerName = localhost
+    g. PortNumber = 1527
+14. Click Finish in the upper right.
+15. Click on JDBC Resources on the left side panel.
+16. Click the New button in the header of the resource list.
+17. Set the JNDI Name to "jdbc/mts".
+18. Select the "mts" pool from the Pool Name pulldown.
+19. Click on the OK button in the upper right.
+20. Close the admin console making note of the port number in the URL.
+21. Clone the https://bitbucket.org/cdsframework/cdsframework-client-support repository.
+22. Build and install all of the artifacts under the https://bitbucket.org/cdsframework/cdsframework-client-support repository.
+23. Clone the https://bitbucket.org/cdsframework/cdsframework-core-service repository.
+24. Build and install all of the artifacts under the https://bitbucket.org/cdsframework/cdsframework-core-service repository.
+25. Copy the etc/cat.properties file to the domain config directory of the domain you are deploying CAT to.
+
+
+If you want to just install of the core MTS and CAT:
+    a. Deploy the mts.ear file from the mts-ear-core project to the autodeploy directory of the domain you want to deploy MTS to.
+    b. Deploy the CAT.war file from the cat-cds project to the autodeploy directory of the domain you want to deploy CAT to.
+
+If you are deploying the core MTS/CAT + a plugin then clone the plugin in question and following the install.txt instructions from here.

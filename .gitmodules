@@ -1,0 +1,9 @@
+[submodule "mts-ejb-core-support"]
+	path = mts-ejb-core-support
+	url = https://github.com/cdsframework/mts-ejb-core-support.git
+[submodule "mts-ejb-core"]
+	path = mts-ejb-core
+	url = https://github.com/cdsframework/mts-ejb-core.git
+[submodule "mts-ear-core"]
+	path = mts-ear-core
+	url = https://github.com/cdsframework/mts-ear-core.git
